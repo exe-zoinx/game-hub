@@ -17,6 +17,12 @@ app.add_middleware(
 app.mount("/static", StaticFiles(directory="../frontend"), name="static")
 
 
+from fastapi.responses import FileResponse
+from pathlib import Path
+
+FRONTEND = Path(__file__).resolve().parent.parent / "frontend"
+
+
 @app.get("/api/health")
 def health():
     return {"status": "ok", "version": "0.1.0"}
@@ -27,9 +33,18 @@ def list_games():
     """Return available games."""
     return {
         "games": [
-            {"id": "snake", "name": "Snake", "description": "Classic snake game", "status": "planned"},
+            {"id": "snake", "name": "Snake", "description": "Classic snake game — eat food, grow, don't crash", "status": "playable", "url": "/games/snake"},
             {"id": "tetris", "name": "Tetris", "description": "Block stacking puzzle", "status": "planned"},
             {"id": "memory", "name": "Memory", "description": "Card matching game", "status": "planned"},
             {"id": "tictactoe", "name": "Tic-Tac-Toe", "description": "Classic 3-in-a-row", "status": "planned"},
         ]
     }
+
+
+@app.get("/games/{game_id}")
+def serve_game(game_id: str):
+    """Serve a game HTML page."""
+    game_file = FRONTEND / "games" / f"{game_id}.html"
+    if not game_file.exists():
+        return {"error": "Game not found"}, 404
+    return FileResponse(str(game_file))

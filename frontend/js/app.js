@@ -9,12 +9,13 @@ async function loadGames() {
         data.games.forEach(game => {
             const card = document.createElement('div');
             card.className = 'game-card';
+            if (game.status === 'playable') card.classList.add('playable');
             card.innerHTML = `
-                <h3>${game.name}</h3>
+                <h3>${gameIcon(game.id)} ${game.name}</h3>
                 <p>${game.description}</p>
-                <span class="badge">${game.status}</span>
+                <span class="badge ${game.status}">${game.status}</span>
             `;
-            card.addEventListener('click', () => launchGame(game.id));
+            card.addEventListener('click', () => launchGame(game));
             grid.appendChild(card);
         });
     } catch (err) {
@@ -22,8 +23,17 @@ async function loadGames() {
     }
 }
 
-function launchGame(gameId) {
-    alert(`Game "${gameId}" — coming soon!`);
+function gameIcon(id) {
+    const icons = { snake: '🐍', tetris: '🧱', memory: '🃏', tictactoe: '❌', breakout: '🏓', minesweeper: '💣' };
+    return icons[id] || '🎮';
+}
+
+function launchGame(game) {
+    if (game.status === 'playable' && game.url) {
+        window.location.href = game.url;
+    } else {
+        alert(`"${game.name}" — coming soon!`);
+    }
 }
 
 document.addEventListener('DOMContentLoaded', loadGames);

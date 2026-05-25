@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Snake — Game Hub</title>
+    <link rel="stylesheet" href="/static/css/style.css">
+    <link rel="stylesheet" href="/static/css/game.css">
+</head>
+<body>
+    <header>
+        <h1>🐍 Snake</h1>
+        <nav>
+            <a href="/">← Dashboard</a>
+            <a href="/scores">Leaderboard</a>
+        </nav>
+    </header>
+
+    <main class="game-container">
+        <div class="game-info">
+            <div id="snake-score" class="score-display">Score: 0  |  Best: 0</div>
+            <div class="controls-hint">Arrow keys to move · Space to pause/start</div>
+        </div>
+        <div class="canvas-wrapper">
+            <canvas id="snake-canvas" width="400" height="400"></canvas>
+        </div>
+        <div class="game-actions">
+            <button id="snake-start-btn" class="game-btn">Start / Pause (Space)</button>
+        </div>
+    </main>
+
+    <footer>
+        <p>Game Hub — Self-evolving project</p>
+    </footer>
+
+    <script src="/static/js/snake.js"></script>
+</body>
+</html>

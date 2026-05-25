@@ -58,6 +58,13 @@ main { flex: 1; padding: 2rem; max-width: 1200px; margin: 0 auto; width: 100%; }
     margin-top: 0.75rem;
     background: #2d2d5e;
 }
+.game-card .badge.playable {
+    background: #1a4a2e;
+    color: #44ff88;
+}
+.game-card.playable {
+    border-color: rgba(68, 255, 136, 0.2);
+}
 
 footer {
     text-align: center;
