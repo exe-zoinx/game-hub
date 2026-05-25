@@ -24,7 +24,24 @@ Tracking experiments and findings for optimizing Hermes subagent delegation.
 
 ## Experiments
 
-*(Each run logs findings here.)*
+### Run 1 — 2026-05-25: Context Compression + Generalize-First
+
+**Research sources**:
+- Epsilla (2026): "3 Essential Sub-Agent Patterns" — context compression is the PRIMARY value of sub-agents (90%+ token reduction), NOT parallelism
+- Microsoft Azure Architecture: fundamental orchestration patterns (sequential, concurrent, group chat, handoff)
+- Hermes Agent delegation docs: subagents get zero parent context, everything must be in goal+context fields
+
+**Findings**:
+→ **Context over Concurrency**: The real win is lean parent context, not parallel execution. Sub-agents should return ~750 token summaries, not full execution traces.
+→ **Generalize First, Specialize Later**: Start with a single strong model (kk/kilo-auto/free). Only create specialized sub-agents when evidence demands it (e.g., a task needs a different model's capabilities).
+→ **Scheduled Pattern**: Cronjobs ARE the scheduled sub-agent pattern — perfectly aligned.
+
+**Config changes applied**:
+- `max_spawn_depth: 1→2` — enables orchestrator→worker nesting (one level)
+- `child_timeout_seconds: 1200→1800` — more runway for complex builds
+- `max_iterations: 100→150` — deeper subagent work per call
+
+**Next research topic**: Task decomposition strategies — how to split complex builds into optimal subagent chunks.
 
 ## Run 2 — 2026-05-25: Task Decomposition Strategies
 
