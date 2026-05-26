@@ -16,6 +16,15 @@
 - [x] Dashboard shows playable badge (green) + navigates to games
 - [x] Delegation research: AOrchestra 4-tuple pattern documented
 
+## Run 3 — 2026-05-26: Tetris Game
+
+- [x] Tetris game (10x20 grid, SRS rotation, line clearing, scoring, next piece preview, ghost piece, level progression)
+- [x] 7-bag randomizer (fair piece distribution)
+- [x] Hard drop + wall kicks (SRS)
+- [x] Game-specific layout (sidebar with next piece, lines, level)
+- [x] Backend updated — `tetris` promoted to `playable`
+- [x] Delegation research: Sub-agent pattern synchronization (Epsilla 3-pattern)
+
 ### Next up
 - [ ] Implement Tic-Tac-Toe game (vs AI, minimax algorithm)
 - [ ] SQLite database setup (users, scores, sessions)

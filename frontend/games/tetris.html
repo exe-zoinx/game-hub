@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tetris — Game Hub</title>
+    <link rel="stylesheet" href="/static/css/style.css">
+    <link rel="stylesheet" href="/static/css/game.css">
+    <style>
+        .tetris-layout {
+            display: flex;
+            gap: 2rem;
+            align-items: flex-start;
+        }
+        .tetris-sidebar {
+            background: #1a1a2e;
+            border: 1px solid rgba(255,255,255,0.08);
+            border-radius: 12px;
+            padding: 1.5rem;
+            min-width: 140px;
+            text-align: center;
+        }
+        .tetris-sidebar h3 {
+            font-size: 0.85rem;
+            color: #888;
+            margin-bottom: 0.5rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        .tetris-sidebar .stat {
+            font-size: 1.2rem;
+            font-weight: bold;
+            color: #6c63ff;
+            margin-bottom: 1rem;
+        }
+        #tetris-next-canvas {
+            background: #0a0a18;
+            border-radius: 8px;
+            border: 1px solid rgba(255,255,255,0.1);
+            margin: 0 auto 1rem;
+            display: block;
+        }
+        .tetris-controls {
+            font-size: 0.8rem;
+            color: #666;
+            line-height: 1.6;
+            margin-top: 0.5rem;
+        }
+        .tetris-controls kbd {
+            background: #2d2d5e;
+            padding: 1px 6px;
+            border-radius: 3px;
+            font-size: 0.75rem;
+            color: #ccc;
+        }
+
+        @media (max-width: 640px) {
+            .tetris-layout { flex-direction: column; align-items: center; }
+            .tetris-sidebar { min-width: auto; width: 100%; max-width: 280px; }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>🧱 Tetris</h1>
+        <nav>
+            <a href="/">← Dashboard</a>
+            <a href="/scores">Leaderboard</a>
+        </nav>
+    </header>
+
+    <main class="game-container">
+        <div class="game-info">
+            <div id="tetris-score" class="score-display">Score: 0  |  Best: 0</div>
+            <div class="controls-hint">P to pause · Space to drop</div>
+        </div>
+
+        <div class="tetris-layout">
+            <div class="canvas-wrapper">
+                <canvas id="tetris-canvas" width="280" height="560"></canvas>
+            </div>
+
+            <div class="tetris-sidebar">
+                <h3>Next</h3>
+                <canvas id="tetris-next-canvas" width="84" height="84"></canvas>
+
+                <h3>Lines</h3>
+                <div id="tetris-lines" class="stat">0</div>
+
+                <h3>Level</h3>
+                <div id="tetris-level" class="stat">1</div>
+
+                <button id="tetris-start-btn" class="game-btn" style="width:100%">▶ Start</button>
+
+                <div class="tetris-controls">
+                    <kbd>←</kbd><kbd>→</kbd> Move &nbsp; <kbd>↑</kbd> Rotate<br>
+                    <kbd>Z</kbd> Rotate L &nbsp; <kbd>↓</kbd> Soft<br>
+                    <kbd>Space</kbd> Hard drop &nbsp; <kbd>P</kbd> Pause
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <p>Game Hub — Self-evolving project</p>
+    </footer>
+
+    <script src="/static/js/tetris.js"></script>
+</body>
+</html>

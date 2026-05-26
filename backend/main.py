@@ -34,7 +34,7 @@ def list_games():
     return {
         "games": [
             {"id": "snake", "name": "Snake", "description": "Classic snake game — eat food, grow, don't crash", "status": "playable", "url": "/games/snake"},
-            {"id": "tetris", "name": "Tetris", "description": "Block stacking puzzle", "status": "planned"},
+            {"id": "tetris", "name": "Tetris", "description": "Block stacking puzzle — clear lines, set high scores", "status": "playable", "url": "/games/tetris"},
             {"id": "memory", "name": "Memory", "description": "Card matching game", "status": "planned"},
             {"id": "tictactoe", "name": "Tic-Tac-Toe", "description": "Classic 3-in-a-row", "status": "planned"},
         ]

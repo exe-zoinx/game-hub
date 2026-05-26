@@ -54,3 +54,18 @@ Key finding: AOrchestra paper (arXiv 2602.03786) proposes sub-agents as ⟨Instr
 - Current config: `max_iterations: 100`, `child_timeout_seconds: 1200`, `max_concurrent_children: 3`, `max_spawn_depth: 1`
 - The single spawn depth is good for now — prevents runaway sub-agent chains. Could increase `max_concurrent_children` to 4 for parallel subtasks, but 3 is safe for current task complexity.
 - Key improvement: structure instructions with (a) primary goal, (b) subtask breakdown, (c) explicit output contract — matching the AOrchestra tuple approach.
+
+## Run 3 — 2026-05-26: Sub-Agent Pattern Synchronization
+
+**Source:** Epsilla (March 2026) — [3 Essential Sub-Agent Patterns](https://www.epsilla.com/blogs/2026-03-14-ai-sub-agent-patterns)
+
+**Key findings:**
+→ **Three core patterns**: Sync (blocking, parent waits), Async (fire-and-forget, parallel), Scheduled (future execution with context rehydration)
+→ **Tool design trick**: Use 2 separate tools (schedule A / schedule B) vs 1 tool with mode param — models better at selection (pick from list) than param optimization → cleaner logs, tracing, debugging
+→ **Context rehydration**: Scheduled sub-agents should rehydrate from persistent store (DB / semantic graph) at execution time, not carry stale context forward
+→ **Self-iterating agents**: Next frontier — agents that iterate on themselves, constrained only by cost/budget
+→ **Context hydration pattern**: Cron jobs = scheduled sub-agents. This cronjob IS a scheduled sub-agent pattern — it rehydrates by reading files/DB at execution time, which matches best practice.
+
+**Config changes applied:** None — current setup already follows best practices (scheduled execution with context rehydration from filesystem). The "2 tools vs 1 tool with mode" insight is noted for future skill design but not applicable to current config.
+
+**Next topic:** Self-improvement loops — agent iterating on own workflow.
